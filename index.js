@@ -13,17 +13,17 @@ const app = express();
 // Conf cors
 app.use(cors());
 
+// Lestura y parseo del body
+app.use( express.json() );
+
 // Base de dato
 dbConnection();
 
 
 // Rutas
-app.get('/', (req, res) => {
-   res.status(200).json({
-       ok: true,
-       msj: 'hola mundo'
-   })
-})
+// Ruta principal de los usuarios/ Siempre van a routes/usuarios
+app.use('/api/usuarios', require('./routes/usuarios'));
+app.use('/api/login', require('./routes/auth'));
 
 
 
